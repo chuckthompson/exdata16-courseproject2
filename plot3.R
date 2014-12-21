@@ -44,7 +44,6 @@ annualEmissions$type <- as.factor(annualEmissions$type)
 colnames(annualEmissions)[2] <- c("Source") # re-label type column
 
 # Open PNG file to save plot to.
-#png(file="plot3.png",width=720,height=960,bg="transparent")
 png(file="plot3.png",width=640,height=640,bg="transparent")
 
 # Create base ggplot.  Specify the grouping to be by type (so that the data

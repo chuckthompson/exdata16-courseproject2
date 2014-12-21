@@ -49,13 +49,10 @@ annualEmissions <- ddply(NEI_Baltimore, "year", summarise,
 annualEmissions$year <- as.factor(annualEmissions$year)
 
 # Create table summarizing the total emissions for each year.
-png(file="plot5.png",width=960,height=960,bg="transparent")
+png(file="plot5.png",width=640,height=640,bg="transparent")
 
 # Create the base ggplot.
 g <- ggplot(annualEmissions, aes(year, Emissions, group=1))
-
-# Increase the left and bottom margins to give more room for the axis labels.
-g <- g + theme(plot.margin=unit(c(2,2,1,1),"in"))
 
 # This time we'll display the data as a bar plot.
 g <- g + geom_bar(stat="identity", fill="red")

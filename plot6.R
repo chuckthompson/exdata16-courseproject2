@@ -60,20 +60,17 @@ annualEmissions <- rbind(annualEmissions,
 
 # Coerce the year column to type factor for use with ggplot.
 annualEmissions$year <- as.factor(annualEmissions$year)
+colnames(annualEmissions)[1] <- c("Year") # re-label year column
 
 # Open PNG file to save plot to.
-png(file="plot6.png",width=960,height=960,bg="transparent")
+png(file="plot6.png",width=720,height=640,bg="transparent")
 
 # Create the base ggplot.  Specify the grouping to be by Location.
 g <- ggplot(annualEmissions,
-            aes(year, Emissions, color=Location, group=Location))
-
-# Increase the left and bottom margins to give more room for the axis labels.
-g <- g + theme(plot.margin=unit(c(2,2,1,1),"in"))
-g <- g + theme_bw()
+            aes(Year, Emissions, color=Location, group=Location))
 
 # Display the data as a bar plot, this time with each year a different color.
-g <- g + geom_bar(stat="identity", aes(fill=year))
+g <- g + geom_bar(stat="identity", aes(fill=Year))
 
 # With each location in its own plot.
 g <- g + facet_grid(. ~ Location)

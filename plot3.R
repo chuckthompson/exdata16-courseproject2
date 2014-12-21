@@ -19,7 +19,7 @@ library(grid)       # for unit function used in theme function
 ##     The NON-ROAD, NONPOINT, and ON-ROAD emissions sources have all seen at
 ##     least small decreases in Baltimore City, Maryland from 1998-2008.  The
 ##     POINT emissions source has seen a small overall increase in that
-##     timeframe, which includes significant increases between 1999/2002 and
+##     time frame, which includes significant increases between 1999/2002 and
 ##     2002/2005 before dropping back down in 2008 to close to its 1999 value.
 
 ##
@@ -44,17 +44,15 @@ annualEmissions$type <- as.factor(annualEmissions$type)
 colnames(annualEmissions)[2] <- c("Source") # re-label type column
 
 # Open PNG file to save plot to.
-png(file="plot3.png",width=720,height=960,bg="transparent")
+#png(file="plot3.png",width=720,height=960,bg="transparent")
+png(file="plot3.png",width=640,height=640,bg="transparent")
 
 # Create base ggplot.  Specify the grouping to be by type (so that the data
 # points are connected by lines) and specify that type data is to be in color.
 g <- ggplot(annualEmissions, aes(year, Emissions, color=Source, group=Source))
 
-# Increase the left and bottom margins to give more room for the axis labels.
-g <- g + theme(plot.margin=unit(c(2,2,1,1),"in"))
-
-# Connect the data points via a line.
-g <- g + geom_line(size=1)
+# Plot the data points and then add a smoother to allow seeing the trend.
+g <- g + geom_point(stat="identity") + geom_smooth(method="lm")
 
 # Display the data for each type in a separate panel.
 g <- g + facet_grid(Source ~ .)

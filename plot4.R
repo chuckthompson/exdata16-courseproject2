@@ -14,7 +14,7 @@ library(grid)       # for unit function used in theme function
 
 ## Answer #4:
 ##     Overall US emissions from coal combustion-related sources have dropped
-##     from 1999-2008, most signficantly between 2005 and 2008 following a
+##     from 1999-2008, most significantly between 2005 and 2008 following a
 ##     small increase between 2002 and 2005.
 
 ##
@@ -49,16 +49,13 @@ annualEmissions <- ddply(NEI_subset, "year", summarise,
 annualEmissions$year <- as.factor(annualEmissions$year)
 
 # Open PNG file to save plot to.
-png(file="plot4.png",width=960,height=960,bg="transparent")
+png(file="plot4.png",width=480,height=480,bg="transparent")
 
 # Create the base ggplot.
 g <- ggplot(annualEmissions, aes(year, Emissions, group=1))
 
-# Increase the left and bottom margins to give more room for the axis labels.
-g <- g + theme(plot.margin=unit(c(2,2,1,1),"in"))
-
 # Connect the data points via a line.
-g <- g + geom_line(size=2)
+g <- g + geom_line(size=1)
 
 # Label and x and y axis.
 g <- g + labs(x = "Year") + labs(y = "Total PM2.5 Emissions (in tons)")

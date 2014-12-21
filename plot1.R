@@ -31,7 +31,6 @@ annualEmissions <- ddply(NEI, "year", summarise, Emissions = sum(Emissions))
 # Open PNG file to save plot to and set formatting parameters for it.
 png(file="plot1.png",width=480,height=480,bg="transparent")
 options (scipen=50)  # Prevent y-axis tick labels in scientific notation
-#par (mar=c(6,6,2,2))  # Increase left/bottom margins for axis labels
 
 # Plot the data as a bar plot with the plot appropriately labeled.
 barplot (annualEmissions$Emissions, names.arg=annualEmissions$year)
